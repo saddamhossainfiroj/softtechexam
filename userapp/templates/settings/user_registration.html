@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% include "settings/static_files.html" %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ServierBD HRM | Log in</title>
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="register-logo">
+        <a style="color: black;" href="#"><b>Soft Tech Innovation </b>Ltd</a>
+      </div>
+    
+      <div class="card">
+        <div class="card-body register-card-body">
+          <p class="login-box-msg">Register a new membership</p>
+    
+          <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {% if messages %}
+              <div class="messages">
+                  {% for message in messages %}
+                      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+            <div class="input-group mb-3">
+              <input type="text" name="user_name" class="form-control" placeholder="Full name" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="email" name="user_email" class="form-control" placeholder="Email" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="mobile_number" class="form-control" placeholder="Mobile Number" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-mobile"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" name="user_pass" id="user_pass" class="form-control" placeholder="Password" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" name="re_password" id="re_password" class="form-control" placeholder="Retype password" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="file" name="user_image" id="user_image" onchange="image_view(this, 'banner_img')" class="form-control" placeholder="Select Image" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-image"></span>
+                </div>
+              </div>
+            </div>
+            <div id="div_image" style="margin-left: 218px;" class="input-group mb-3">
+              <img id="banner_img" style="min-height: 30px;height: 60px; width: 80px;" alt="">
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <div class="icheck-primary">
+                  <input type="checkbox" id="agreeTerms" name="terms" value="agree" required>
+                  <label for="agreeTerms">
+                   I agree to the <a href="#">terms</a>
+                  </label>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+    
+          <a href="/login/" class="text-center">I already have a membership</a>
+        </div>
+        <!-- /.form-box -->
+      </div><!-- /.card -->
+    </div>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+    $("#div_image").hide();
+    });
+    $("#re_password").change(function(){
+        var re_password = $("#re_password").val();
+        var user_pass   = $("#user_pass").val();
+        if(user_pass != re_password)
+        {
+            alert("Confirm password not match!.");
+            $("#re_password").val('');
+            $("#re_password").focus();
+        }
+    });
+    $("#user_image").change(function(){
+        var user_image = $("#user_image").val();
+        if(user_image != "")
+        {
+        $("#div_image").show();
+        }
+    });
+</script>

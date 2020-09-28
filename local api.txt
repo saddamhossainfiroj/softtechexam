@@ -1,0 +1,5 @@
+User Login = http://127.0.0.1:8000/app-user-login/
+User Registration = http://127.0.0.1:8000/app-user-registration/
+User Update = http://127.0.0.1:8000/app-user-profile-update/
+User List = http://127.0.0.1:8000/app-user-list/
+User Delete = http://127.0.0.1:8000/app-user-delete/

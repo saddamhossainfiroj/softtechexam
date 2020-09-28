@@ -1,0 +1,54 @@
+{% extends 'settings/base.html' %}
+{% block title %}ServierBD | Dashboard{% endblock %}
+{% load staticfiles %}
+{% include "settings/static_files.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-body col-md-6">
+      {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        </div>
+      {% endif %}
+        <div class="input-group mb-3">
+          {% if profile.user_img %}
+            <img src="/static/userapp/images/{{profile.user_img}}" class="img-size-50 mr-3 img-circle" style="height: 120px; width: 130px;margin-left: 38%;" alt="">
+          {% else %}
+            <img src="/static/userapp/images/default.jpg" class="img-size-50 mr-3 img-circle" style="height: 120px; width: 130px;margin-left: 38%;" alt="">
+          {% endif %}
+          </div>
+        <div class="mb-3">
+          <h3 style="text-align: center;"><b >{{profile.user_name}}</b></h3>
+        </div>
+          <div class="input-group mb-3">
+            <input type="email" name="user_email" class="form-control" value="{{profile.user_email}}" placeholder="Email" readonly>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" name="mobile_number" class="form-control" value="{{profile.mobile_number}}" placeholder="Mobile Number" readonly>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-mobile"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-3">
+                <a href="/user-profile-update/{{profile.id}}/" class="btn btn-success">Update</a>
+            </div>
+            <div class="col-md-3">
+                <a href="/{{profile.id}}/delete-user/" id="delete_user" onclick="return confirm('Do you want to delete user?')" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+    </div>
+
+</div>
+{% endblock %}

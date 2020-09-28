@@ -1,0 +1,64 @@
+{% extends 'settings/base.html' %}
+{% block title %}Soft Tech Innovation | Dashboard{% endblock %}
+{% load staticfiles %}
+{% include "settings/static_files.html" %}
+{% block content %}
+      <div class="card">
+        <div class="card-body register-card-body col-md-6">
+          <h2 class="login-box-msg">Update user information</h2>
+    
+          <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {% if messages %}
+              <div class="messages">
+                  {% for message in messages %}
+                      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+            <div class="input-group mb-3">
+              <input type="text" name="user_name" class="form-control" value="{{profile.user_name}}"  placeholder="Full name" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="email" name="user_email" class="form-control" value="{{profile.user_email}}"  placeholder="Email" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="mobile_number" value="{{profile.mobile_number}}" class="form-control" placeholder="Mobile Number" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-mobile"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="file" name="user_image" id="user_image" onchange="image_view(this, 'banner_img')" class="form-control" placeholder="Select Image">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-image"></span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-left: 218px;" class="input-group mb-3">
+              <img id="banner_img" src="/static/userapp/images/{{profile.user_img}}" style="min-height: 30px;height: 60px; width: 80px;" alt="">
+            </div>
+              <!-- /.col -->
+              <div class="col-4">
+                  <input type="submit" value="Update" class="btn btn-primary btn-block">
+              </div>
+              <!-- /.col -->
+            </div>
+          </form>
+
+        </div>
+        <!-- /.form-box -->
+      </div><!-- /.card -->
+{% endblock %}

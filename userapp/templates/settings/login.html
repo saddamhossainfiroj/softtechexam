@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% include "settings/static_files.html" %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ServierBD HRM | Log in</title>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a style="color: black;" href="#"><b>Soft Tech Innovation </b>Ltd</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div style="min-height: 1px;" class="card-body login-card-body">
+      <p class="login-box-msg">Login to Soft Tech</p>
+
+      <form method="post">{% csrf_token %}
+        {% if messages %}
+          <div class="messages">
+              {% for message in messages %}
+                  <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+              {% endfor %}
+          </div>
+      {% endif %}
+        <div class="input-group mb-3">
+          <input type="text" name="user_email" class="form-control" placeholder="usermail@gmail.com" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="user_pass" class="form-control" placeholder="Password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <div class="social-auth-links text-center mb-3">
+      <p>- OR -</p>
+      <p class="mb-0">
+        <a href="/user-registration/" class="text-center">Register a new membership</a>
+      </p>
+    </div>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+</body>
+</html>
